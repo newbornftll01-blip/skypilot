@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sky Pilot — Sign up</title>
+<meta name="description" content="Create your Sky Pilot account to grow your social media presence.">
+<meta name="theme-color" content="#050d24">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body class="authpage">
+<div class="bg" aria-hidden="true"><i></i><i></i><i></i></div>
+<main class="authwrap">
+  <section class="authhero">
+    <a class="logo big" href="index.html">✈ Sky<b>Pilot</b></a>
+    <h1>Take your accounts <span class="grad">to cruising altitude</span></h1>
+    <p class="sub">Create a free account, fund your wallet, paste a link and track every order live.</p>
+    <ul class="perks">
+      <li>💳 One wallet, instant price on every service</li>
+      <li>📡 Live order tracking and notifications</li>
+      <li>🛡 Undelivered orders are refunded to your wallet</li>
+      <li>🤖 AI assistant that can draft orders for you</li>
+    </ul>
+  </section>
+
+  <section class="authcard">
+    <div class="tabs" id="tabs" role="tablist">
+      <button type="button" id="tabUp" class="on" role="tab">Sign up</button>
+      <button type="button" id="tabIn" role="tab">Log in</button>
+    </div>
+    <form id="authForm" novalidate>
+      <label id="nameRow">Full name <input id="name" autocomplete="name" maxlength="80"></label>
+      <label>Email <input id="email" type="email" required autocomplete="email"></label>
+      <label>Password <input id="password" type="password" required minlength="8" autocomplete="new-password" placeholder="At least 8 characters"></label>
+      <label class="check" id="termsRow"><input id="terms" type="checkbox"> <span>I understand Sky Pilot never asks for my social-media password, and I am responsible for following each platform's terms.</span></label>
+      <button class="btn" id="submit" type="submit">Create account</button>
+      <button class="link" id="forgot" type="button" hidden>Forgot your password?</button>
+      <p id="msg" role="status"></p>
+    </form>
+    <form id="codeForm" hidden novalidate>
+      <h2 id="codeTitle">Verify your email</h2>
+      <p id="codeHelp" class="muted"></p>
+      <label>Code <input id="code" inputmode="numeric" autocomplete="one-time-code" maxlength="10" placeholder="123456"></label>
+      <label id="pwRow" hidden>New password <input id="newpw" type="password" minlength="8" autocomplete="new-password" placeholder="At least 8 characters"></label>
+      <button class="btn" id="codeBtn" type="submit">Verify &amp; continue</button>
+      <button class="link" id="resend" type="button">Resend code</button>
+      <button class="link" id="back" type="button">← Back</button>
+      <p id="cmsg" role="status"></p>
+    </form>
+  </section>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="config.js"></script>
+<script src="core.js"></script>
+<script src="auth.js"></script>
+</body>
+</html>

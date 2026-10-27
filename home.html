@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sky Pilot — Home</title>
+<meta name="theme-color" content="#050d24">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="bg" aria-hidden="true"><i></i><i></i><i></i></div>
+<header id="topbar"></header>
+
+<main id="top">
+  <section class="hero">
+    <div>
+      <span class="eyebrow" id="hello">Welcome aboard</span>
+      <h1>Take your accounts <span class="grad">to cruising altitude</span></h1>
+      <p class="sub">Choose what you need, paste your link, and watch your numbers climb. We never need your password.</p>
+      <div class="cta">
+        <a class="btn gold" href="#calculator">Start an order</a>
+        <a class="btn ghost" href="account.html#wallet">Add funds</a>
+      </div>
+      <ul class="stats">
+        <li><b id="statBal">$0.00</b><span>wallet balance</span></li>
+        <li><b id="statOrders">0</b><span>your orders</span></li>
+        <li><b>24/7</b><span>AI assistant</span></li>
+      </ul>
+    </div>
+    <div class="demo" aria-label="Example order animation">
+      <div class="row"><span>Example · TikTok Followers</span><span class="tag" id="dstate">Starting</span></div>
+      <div class="handle">@your_account</div>
+      <div class="num" id="dnum">1,240</div>
+      <div class="bar"><span id="dbar"></span></div>
+      <div class="row"><span>followers</span><span id="dadd">+0</span></div>
+    </div>
+  </section>
+
+  <section id="services" class="rv">
+    <h2>What do you want to grow?</h2>
+    <div class="tabs" id="tabs"></div>
+    <div class="grid" id="grid"><p class="empty">Loading services…</p></div>
+  </section>
+
+  <section id="how" class="rv">
+    <h2>How it works</h2>
+    <div class="steps">
+      <div class="step"><em>1</em><p><b>Add funds.</b> Top up your wallet with PayPal. Card and bank transfer are coming soon.</p></div>
+      <div class="step"><em>2</em><p><b>Paste your link.</b> Just the public link to your post or profile.</p></div>
+      <div class="step"><em>3</em><p><b>Track it live.</b> Status updates appear here and under the 🔔 as they happen.</p></div>
+    </div>
+    <p class="guarantee">🛡 Cancelled or partly delivered? The undelivered part goes straight back to your wallet.</p>
+  </section>
+
+  <section id="calculator" class="panel rv">
+    <h2>Instant price calculator</h2>
+    <form id="calc">
+      <label>Platform <select id="platform"></select></label>
+      <label>Service <select id="service"></select></label>
+      <p class="desc" id="desc"></p>
+      <label>Link or @username <input id="link" placeholder="https://… or @handle" required maxlength="500"></label>
+      <label>Quantity <input id="qty" type="number" required></label>
+      <input id="range" type="range" aria-label="Quantity slider">
+      <div class="total">Total: <b id="total">$0.00</b> <small id="meta"></small></div>
+      <button class="btn" id="orderBtn" type="submit">Place order</button>
+      <p id="msg" role="status"></p>
+    </form>
+  </section>
+
+  <section id="recent" class="rv">
+    <h2>Your recent orders <a class="more" href="account.html#orders">See all →</a></h2>
+    <div class="tblwrap"><table class="tbl"><thead><tr><th>#</th><th>Service</th><th>Qty</th><th>Total</th><th>Status</th></tr></thead>
+    <tbody id="orderRows"></tbody></table></div>
+  </section>
+
+  <section id="faq" class="rv">
+    <h2>Questions</h2>
+    <details><summary>Do you need my password?</summary><p>Never. We only need a public link or username.</p></details>
+    <details><summary>How do I pay?</summary><p>Add funds to your wallet with PayPal, then paste your PayPal transaction ID so we can verify and credit it. Card and bank payments via Paystack are coming soon.</p></details>
+    <details><summary>How fast does it start?</summary><p>Orders start after they are picked up by our team. Follow the live status under Wallet &amp; Orders.</p></details>
+    <details><summary>What if it isn't delivered?</summary><p>Cancelled orders are fully refunded to your wallet; partly delivered orders are refunded for the missing part.</p></details>
+    <details><summary>Are results guaranteed?</summary><p>Delivery is an estimate. Platforms may change counts, and growth services can go against a platform's terms. Use at your own discretion.</p></details>
+  </section>
+</main>
+
+<footer><div class="in"><p>© <span id="yr"></span> Sky Pilot. Not affiliated with any social platform.</p></div></footer>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="config.js"></script>
+<script src="core.js"></script>
+<script src="app.js"></script>
+<script src="motion.js"></script>
+<script src="assistant.js"></script>
+</body>
+</html>

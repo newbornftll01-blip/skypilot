@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sky Pilot — Reset password</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body class="authpage">
+<div class="bg" aria-hidden="true"><i></i><i></i><i></i></div>
+<main class="authwrap single">
+  <section class="authcard">
+    <a class="logo big" href="index.html">✈ Sky<b>Pilot</b></a>
+    <h2>Choose a new password</h2>
+    <form id="form">
+      <label>New password <input id="pw" type="password" minlength="8" required autocomplete="new-password"></label>
+      <button class="btn" type="submit">Update password</button>
+      <p id="msg" role="status"></p>
+    </form>
+  </section>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="config.js"></script>
+<script src="core.js"></script>
+<script>
+  const { sb, $ } = Sky;
+  let ok = false;
+  const msg = (t, bad) => { $("#msg").textContent = t; $("#msg").className = bad ? "err" : "okmsg"; };
+  // The emailed link signs the visitor in with a recovery session; without one there is nothing to reset.
+  sb.auth.onAuthStateChange(ev => { if (ev === "PASSWORD_RECOVERY" || ev === "SIGNED_IN") ok = true; });
+  sb.auth.getSession().then(({ data }) => { if (data.session) ok = true; });
+  setTimeout(() => { if (!ok) msg("This reset link is invalid or has expired. Go back and request a new one.", true); }, 2500);
+  $("#form").onsubmit = async e => {
+    e.preventDefault();
+    const { error } = await sb.auth.updateUser({ password: $("#pw").value });
+    msg(error ? error.message : "Password updated. Redirecting…", !!error);
+    if (!error) setTimeout(() => location.replace("home.html"), 1200);
+  };
+</script>
+</body>
+</html>

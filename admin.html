@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sky Pilot — Admin</title>
+<meta name="robots" content="noindex">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="bg" aria-hidden="true"><i></i><i></i><i></i></div>
+<header id="topbar"></header>
+<main class="adminmain">
+  <h2>Admin console</h2>
+  <div class="statgrid" id="stats"></div>
+  <div class="tabs" id="atabs">
+    <button data-t="orders" class="on">Orders</button><button data-t="topups">Top-ups</button><button data-t="users">Users</button>
+    <button data-t="services">Services</button><button data-t="support">Support</button><button data-t="broadcast">Broadcast</button>
+  </div>
+
+  <div id="p-orders" class="apanel">
+    <div class="toolbar">
+      <select id="ostatus"><option value="">All statuses</option><option>pending</option><option>processing</option><option>completed</option><option>partial</option><option>cancelled</option><option>refunded</option></select>
+      <button class="btn small" id="sendAll" type="button">Send pending → supplier</button>
+      <button class="btn ghost small" id="syncAll" type="button">Sync supplier status</button>
+      <span class="muted" id="provMsg"></span>
+    </div>
+    <div class="tblwrap"><table class="tbl"><thead><tr><th>#</th><th>Customer</th><th>Service</th><th>Link</th><th>Qty</th><th>Total</th><th>Status</th><th>Actions</th></tr></thead><tbody id="oRows"></tbody></table></div>
+  </div>
+
+  <div id="p-topups" class="apanel" hidden>
+    <div class="tblwrap"><table class="tbl"><thead><tr><th>Date</th><th>Customer</th><th>Amount</th><th>PayPal ref</th><th>Status</th><th></th></tr></thead><tbody id="tRows"></tbody></table></div>
+  </div>
+
+  <div id="p-users" class="apanel" hidden>
+    <input id="usearch" placeholder="Search email or name…" class="search">
+    <div class="tblwrap"><table class="tbl"><thead><tr><th>User</th><th>Balance</th><th>Joined</th><th></th></tr></thead><tbody id="uRows"></tbody></table></div>
+  </div>
+
+  <div id="p-services" class="apanel" hidden>
+    <div class="tblwrap"><table class="tbl"><thead><tr><th>Platform</th><th>Name</th><th>$/1000</th><th>Min</th><th>Max</th><th>Supplier ID</th><th>Active</th><th></th></tr></thead><tbody id="sRows"></tbody></table></div>
+  </div>
+
+  <div id="p-support" class="apanel" hidden>
+    <div class="tblwrap"><table class="tbl"><thead><tr><th>Date</th><th>Customer</th><th>Message</th><th>Status</th><th></th></tr></thead><tbody id="qRows"></tbody></table></div>
+  </div>
+
+  <div id="p-broadcast" class="apanel" hidden>
+    <form class="boxform wide" id="bForm">
+      <label>Send to <select id="bTo"><option value="">Everyone</option></select></label>
+      <label>Title <input id="bTitle" required maxlength="100"></label>
+      <label>Message <textarea id="bBody" rows="3" maxlength="500"></textarea></label>
+      <button class="btn" type="submit">Send notification</button>
+      <p id="bMsg" role="status"></p>
+    </form>
+  </div>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="config.js"></script>
+<script src="core.js"></script>
+<script src="admin.js"></script>
+</body>
+</html>

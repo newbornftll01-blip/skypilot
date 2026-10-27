@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sky Pilot — Wallet &amp; Orders</title>
+<meta name="theme-color" content="#050d24">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="bg" aria-hidden="true"><i></i><i></i><i></i></div>
+<header id="topbar"></header>
+
+<main>
+  <section id="wallet">
+    <h2>Wallet</h2>
+    <div class="walletgrid">
+      <div class="balcard">
+        <small>Available balance</small>
+        <div class="bal" id="bal">$0.00</div>
+        <p class="muted">Orders are paid from your balance.</p>
+      </div>
+      <form class="boxform" id="topupForm">
+        <h3>Add funds</h3>
+        <label>Amount (USD) <input id="amount" type="number" min="1" max="10000" step="0.01" value="10" required></label>
+        <ol class="howto">
+          <li>Tap <b>Pay with PayPal</b> and send the exact amount.</li>
+          <li>Paste the PayPal <b>transaction ID</b> from your receipt below.</li>
+          <li>We verify it and credit your wallet. You'll get a notification.</li>
+        </ol>
+        <a class="btn gold" id="paypalBtn" target="_blank" rel="noopener noreferrer" href="#">Pay with PayPal ↗</a>
+        <label>PayPal transaction ID <input id="ref" required minlength="3" maxlength="120" placeholder="e.g. 5TY12345AB678901C"></label>
+        <button class="btn" id="topupBtn" type="submit">I've paid — submit for verification</button>
+        <button class="btn ghost" type="button" disabled>Card / bank transfer (Paystack) — coming soon</button>
+        <p id="topupMsg" role="status"></p>
+      </form>
+    </div>
+    <h3>Top-up requests</h3>
+    <div class="tblwrap"><table class="tbl"><thead><tr><th>Date</th><th>Amount</th><th>Reference</th><th>Status</th></tr></thead><tbody id="topupRows"></tbody></table></div>
+    <h3>Transactions</h3>
+    <div class="tblwrap"><table class="tbl"><thead><tr><th>Date</th><th>Type</th><th>Details</th><th>Amount</th><th>Balance</th></tr></thead><tbody id="txRows"></tbody></table></div>
+  </section>
+
+  <section id="orders">
+    <h2>Orders</h2>
+    <div class="tblwrap"><table class="tbl"><thead><tr><th>#</th><th>Date</th><th>Service</th><th>Qty</th><th>Total</th><th>Status</th><th></th></tr></thead><tbody id="orderRows"></tbody></table></div>
+  </section>
+
+  <section id="profile">
+    <h2>Profile &amp; security</h2>
+    <div class="walletgrid">
+      <form class="boxform" id="profileForm">
+        <h3>Your details</h3>
+        <label>Email <input id="pEmail" disabled></label>
+        <label>Full name <input id="pName" maxlength="80"></label>
+        <label>Phone / WhatsApp <input id="pPhone" maxlength="30"></label>
+        <button class="btn" type="submit">Save</button>
+        <p id="profMsg" role="status"></p>
+      </form>
+      <form class="boxform" id="pwForm">
+        <h3>Change password</h3>
+        <label>New password <input id="newpw" type="password" minlength="8" autocomplete="new-password" required></label>
+        <button class="btn" type="submit">Update password</button>
+        <p id="pwMsg" role="status"></p>
+      </form>
+    </div>
+  </section>
+
+  <section id="support">
+    <h2>Support</h2>
+    <form class="boxform wide" id="supForm">
+      <label>Tell us what you need help with <textarea id="supText" rows="3" minlength="3" maxlength="2000" required></textarea></label>
+      <button class="btn" type="submit">Send to support</button>
+      <p id="supMsg" role="status"></p>
+    </form>
+    <div class="tblwrap"><table class="tbl"><thead><tr><th>Date</th><th>Message</th><th>Status</th></tr></thead><tbody id="supRows"></tbody></table></div>
+  </section>
+</main>
+
+<dialog id="orderDlg"><div class="dlgbody" id="orderDetail"></div></dialog>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="config.js"></script>
+<script src="core.js"></script>
+<script src="account.js"></script>
+<script src="assistant.js"></script>
+</body>
+</html>
